@@ -21,7 +21,7 @@ Para transmitir la letra 'i' que es la 4ta letra de nuestro nombre, debemos busc
 i = ascii= 105 
 para pasar el 105 a binario:
 
-calculo105-binario.png
+(img/calculo105-binario.png)
 
 por lo tanto el mensaje seria : ' 0 1 1 0 1 0 0 1'
 la señal se veria asi:
