@@ -129,3 +129,48 @@ La atenuación es la disminución progresiva de la amplitud (o intensidad) de un
 
 + Reflexiones que desvían parte de la energía
 
+---
+
+#### f) El fenómeno descrito en el ítem anterior, ¿Afecta al dispositivo que diste de ejemplo? ¿Podés notar esto en alguna experiencia de la vida cotidiana?
+
+### RESPUESTA
+
+Sí, el fenómeno de atenuación afecta directamente al router WiFi de 5 GHz, que fue el dispositivo mencionado como ejemplo en el punto anterior.
+
+La banda de 5 GHz, aunque permite velocidades más altas y menor congestión que la de 2.4 GHz, tiene una mayor atenuación. Esto significa que:
+
++ La señal pierde intensidad más rápidamente con la distancia.
+
++ Es más sensible a obstáculos físicos como paredes, techos o muebles.
+
+Una situación común es cuando el router está en una habitación y uno se aleja o cambia de ambiente. Si el dispositivo (como un celular o notebook) está conectado a la red WiFi de 5 GHz, es frecuente que se pierda señal rápidamente al alejarse.
+
+La conexión se vuelva inestable o se caiga, especialmente si hay paredes gruesas de por medio.
+
+El dispositivo cambia automáticamente a la red de 2.4 GHz, que tiene más alcance pero menor velocidad.
+
+Esto demuestra cómo la atenuación impacta el funcionamiento real de los dispositivos que operan en la banda SHF.
+
+---
+
+#### g) El fenómeno descrito anteriormente:
++ i) ¿Afecta a las transmisiones de telefonía celular?
++ ii) ¿Afecta a las transmisiones por cable coaxial?
++ iii) ¿Afecta a las transmisiones por fibra óptica?
+
+### RESPUESTA
+
+**i) ¿Afecta a las transmisiones de telefonía celular?**
+
+Sí. Las señales de telefonía celular también se ven afectadas por la atenuación, especialmente en frecuencias más altas como las utilizadas en redes 4G y 5G.
+En zonas con muchos edificios o al estar dentro de estructuras cerradas, es común que la señal se debilite o incluso se pierda. Por eso, las operadoras instalan antenas repetidoras en áreas urbanas densas para compensar esa pérdida de señal.
+
+**ii) ¿Afecta a las transmisiones por cable coaxial?**
+
+Sí, pero en menor medida. Aunque los cables coaxiales son diseñados para reducir la atenuación, también sufren pérdidas de señal, especialmente a medida que aumenta la distancia.
+Por eso, en instalaciones largas (como en televisión por cable o redes), se utilizan amplificadores o repetidores para mantener la calidad de la señal.
+
+**iii) ¿Afecta a las transmisiones por fibra óptica?**
+
+Sí, pero en muchísima menor medida. La fibra óptica tiene una atenuación extremadamente baja en comparación con los medios eléctricos o inalámbricos.
+Esto permite transmitir datos a largas distancias con muy poca pérdida, lo cual la hace ideal para redes troncales de internet y telecomunicaciones. Aun así, en tramos muy extensos se colocan amplificadores ópticos (como los EDFA) para mantener la señal.
