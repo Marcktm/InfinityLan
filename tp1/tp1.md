@@ -1,3 +1,5 @@
+
+
 # 2)
 ## a) 
    Se representa un ***trasmision serie sincrona***. por una sola linea se transmite datos en una sola direccion.
