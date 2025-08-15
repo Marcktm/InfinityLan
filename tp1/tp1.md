@@ -15,6 +15,7 @@ Viendo la imagen podemos ver que el mensaje es el binario
 de acuerdo a la imagen :
 
 > ![puntod](img/pundod.png)
+
 > **Figura 1:** transmision sincrona.
 ## b) 
 la ventaja de esta transmision es que el mensaje esta sincronizado y el receptor sabe ***cuando leer cada bits***.
