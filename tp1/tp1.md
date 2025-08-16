@@ -255,6 +255,7 @@ Otra cuestión a tener en cuenta considerando que el espectro en frecuencia ocup
 más propensa a interferir con otros canales. Y como su energía se reparte en muchas frecuencias, cada parte se ve más afectada por el ruido.
 
 **a)** 
+
 ![Señal escalonada](../tp1/img/escalon.png)
 
 La modulación observada en la imagen es Phase Shift Keying. Esta es una técnica donde la fase de una portadora
@@ -262,6 +263,7 @@ sinusoidal cambia para representar datos digitales (bits).
 
 **b)**
 Señal digital modulada:
+
 ![Señal graficada](../tp1/img/graficada.jpeg)
 
 **c)**
@@ -281,3 +283,58 @@ Se calcula de la siguiente manera:
 $$ BER = \frac{Número de bits erroneos}{Número de bits transmitidos} $$
 Entre las técnicas de modulación mencionadas, la que mejor resultados tiene es la PSK.
 
+
+## 4. Implementación de red simple en Cisco Packet Tracer
+**a)**
+![Imagen_a](img/imagen_a.jpeg)
+
+**b)**
+![Imagen_b](img/imagen_b.jpeg)
+
+**c)**
+
+El router inalámbrico opera en la frecuencia de **2.4GHz**, por lo tanto transmite en la región de microondas del espectro electromagnético.
+El rango asignado es 2.400 GHz - 2.438GHz, dentro de este rango el espectro se divide en canales de 22MHz de ancho de banda (aunque se suele separar de a 5 MHz).
+
+![Imagen_c](img/imagen_c.jpeg)
+
+En la imagen podemos ver: 
+- Canal 1 -> **2.412 GHz** (frecuencia central)
+- Canal 6 -> **2.437 GHz**
+- Canal 11 -> **2.462 GHz**
+
+**d)**
+
+![Imagen_d](img/imagen_d.jpeg)
+
+![Imagen_d0](img/imagen_d1.jpeg)
+
+**e)**
+
+![Imagen_e](img/imagen_e.jpeg)
+
+**f)**
+
+![Imagen_f](img/imagen_f.jpeg)
+![Imagen_f1](img/imagen_f1.jpeg)
+![Imagen_f2](img/imagen_f2.jpeg)
+
+**g)**
+
+![Imagen_g](img/imagen_g.jpeg)
+![Imagen_g1](img/imagen_g1.jpeg)
+![Imagen_g2](img/imagen_g2.jpeg)
+
+**h)**
+
+![Imagen_h](img/imagen_h.jpeg)
+![Imagen_h1](img/imagen_h1.jpeg)
+
+Colocamos la notebook en un sector fuera de la oficina donde la señal es bastante baja, en específico es del 3%. Pero a pesar de esto fue posible conectarse a la red.
+
+![Imagen_h2](img/imagen_h.jpeg)
+
+Sin embargo cuando la colocamos fuera del rango de la señal Wi-Fi vemos que la señal ni siquiera aparece para seleccionarla para realizar la conexión.
+
+### Conclusión
+Al posicionar la notebook en distintas posiciones con respecto a la oficina donde se encuentra el router podemos ver como se produce la pérdida de la señal a medida que nos alejamos de la fuente (router). Esto se debe a la pérdida gradual de la intensidad de la onda electromagnética debido a la absorción y dispersión por el medio en el cual se propaga.
