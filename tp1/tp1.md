@@ -285,13 +285,16 @@ Entre las técnicas de modulación mencionadas, la que mejor resultados tiene es
 
 
 ## 4. Implementación de red simple en Cisco Packet Tracer
-**a)**
+**a) Colocar un router inalámbrico,
+que se encuentra bajo
+network-devices >
+wireless-devices:**
 ![Imagen_a](img/imagen_a.jpeg)
 
-**b)**
+**b)Configurar el router, haciendo click sobre el mismo y desplegando sus opciones, de tal manera que la dirección de IP sea 192.168.0.1 y la máscara de subred 255.255.255.0. Pongan un nombre que les guste (SSID) a la red, y configuren la seguridad wireless para operar con autenticación WPA2-PSK con una contraseña de al menos 8 dígitos.**
 ![Imagen_b](img/imagen_b.jpeg)
 
-**c)**
+**c)Analizar las configuraciones del router y responder: ¿En qué frecuencia opera? ¿A qué región del espectro electromagnético corresponde? ¿En qué banda opera?**
 
 El router inalámbrico opera en la frecuencia de **2.4GHz**, por lo tanto transmite en la región de microondas del espectro electromagnético.
 El rango asignado es 2.400 GHz - 2.438GHz, dentro de este rango el espectro se divide en canales de 22MHz de ancho de banda (aunque se suele separar de a 5 MHz).
@@ -303,29 +306,29 @@ En la imagen podemos ver:
 - Canal 6 -> **2.437 GHz**
 - Canal 11 -> **2.462 GHz**
 
-**d)**
+**d)Colocar una computadora de escritorio (ubicada en la sección End Devices) y conectarla al router. Utilizar un cable “copper straight-through”, ubicado en el menú de conexiones (ícono del rayo). En las configuraciones de la computadora asegurarse de que la placa de red (interfaces -> FastEthernet) esté configurada para adquirir direcciones de manera automática (DHCP).**
 
 ![Imagen_d](img/imagen_d.jpeg)
 
 ![Imagen_d0](img/imagen_d1.jpeg)
 
-**e)**
+**e)Conectaremos ahora la notebook. Primero debemos asegurarnos que la misma tenga una NIC Wi-Fi. En la pestaña principal de la PC, quizás debamos retirar la placa que tenga en la ranura de expansión y colocar una placa Wi-Fi:**
 
 ![Imagen_e](img/imagen_e.jpeg)
 
-**f)**
+**f)Luego podremos configurar la red. Para ello, ingresar a la misma y en la solapa “desktop” (al lado de config) seleccionar PC Wireless. En la solapa connect podremos buscar la red inalámbrica que configuramos en el punto b) y conectarnos a ella. Deberíamos ver que aparece un link entre el router y la notebook, representando la conexión inalámbrica.**
 
 ![Imagen_f](img/imagen_f.jpeg)
 ![Imagen_f1](img/imagen_f1.jpeg)
 ![Imagen_f2](img/imagen_f2.jpeg)
 
-**g)**
+**g)Explorar las interfaces en ambas computadoras, y comprobar que existe conectividad entre ellas. Por ejemplo utilizar pings o trace routes, tomando nota de la IP de cada computadora. Documentar los resultados.**
 
 ![Imagen_g](img/imagen_g.jpeg)
 ![Imagen_g1](img/imagen_g1.jpeg)
 ![Imagen_g2](img/imagen_g2.jpeg)
 
-**h)**
+**h)Una vez comprobada la conexión, cambiaremos la vista a “física”:**
 
 ![Imagen_h](img/imagen_h.jpeg)
 ![Imagen_h1](img/imagen_h1.jpeg)
