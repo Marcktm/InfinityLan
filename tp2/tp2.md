@@ -31,3 +31,39 @@ La SNR (_Signal-to-Noise Ratio_) es una medida que compara la potencia de la se�
 El BER (Bit-Error-Rate) es la tasa de error de bits, es decir, la proporción de bits transmitidos que se reciben de forma incorrecta debido a interferencias.
 - A medida que disminuye el SNR el BER aumenta lo que significa que más bits se reciben de manera errónea.
 
+## Consigna 3
+### a) ¿Qué es el Ethernet? ¿Cuáles son sus características principales? ¿Cómo se conforma una trama de datos de Ethernet? ¿Qué diferencias hay entre Ethernet, Fast Ethernet y Gigabit Ethernet?
+Ethernet es una tecnología de red de área local (LAN) que define como se transmiten los datos entre dispositivos dentro de una misma red cableada. 
+**Características principales de Ethernet**
+- Topología: Originalmente en bus, pero actualmente se usa en estrella (_switches_).
+- Medio físico: Cables de par trenzado (UTP, STP), fibra óptica o coaxial.
+- Método de acceso: Usa el protocolo CSMA/CD (_Carrier Sense Multiple Access with Collision Detection_) en redes half-duplex.
+- Velocidades: Comenzó con 10Mbps, pero evolucionó a 100M bps (Fast Ethernet), 1 Gbps (Gigabit Ethernet), 10 Gbps e incluso más.
+- Direcciones física: Cada dispositivo tiene una dirección MAC única (48 bits).
+
+Una trama Ethernet es la unidad de transmisión. Sus campos principales son:
+
+- Preamble (7 bytes) + Start Frame Delimiter (1 byte). Sincronización.
+- Dirección MAC de destino (6 bytes). A quién va dirigido.
+- Dirección MAC de origen (6 bytes). Quién envía.
+- Tipo / Longitud (2 bytes), indica si es un tipo de protocolo (ej: IPv4, IPv6, ARP) o la longitud de datos.
+- Datos (46 a 1500 bytes), carga útil (payload), lo que realmente se quiere transmitir.
+- CRC / FCS (4 bytes): código de verificación para detectar errores.
+
+### b) ¿Qué es un cable UTP? ¿Qué relación tiene la construcción de este cable con los conceptos vistos en el ítem 2) de este trabajo? ¿Qué diferencias hay entre un cable UTP "derecho" y uno "cruzado"?
+UTP significa Unshielded Twisted Pair. Es el tipo de cable más usado en redes Ethernet. Está compuesto por 4 pares de hilos de cobre trenzados entre sí, sin recubrimiento metálico extra (de este viene el _unshielded_).
+**Relación entre la construcción UTP y la interferencia**:
+- Cada par transmite señales diferenciales (la señal va por un hilo y la inversa por el otro).
+- Al trenzarlos, las interferencias externas afectan de manera similar a ambos hilos, y el receptos puede resetearlas. Esto se conoce como cancelación de ruido común o CMRR.
+- Cada par tiene un número de giros diferentes por metro, para que no se acople demasiado la interferencia entre pares (crosstalk).
+Por eso es que aunque no tengan blindaje metálico, los UTP pueden funcionar muy bien hasta altas frecuencias.
+**Diferencias enrte cable UTP "derecho" y "cruzado"**
+- Cable derecho:
+  - Los pines de ambos extremos siguen el mismo orden de colores (por ejemplo T568B en ambos lados).
+  - Se utiliza para conectar dispositivos diferentes: PC con switch, PC con router, switch con router.
+- Cable cruzado:
+  - Los pares de transmisión y recepción se invierten en un extremo.
+  - Se usa para conectar dos dispositivos iguales entre sí, como dos switches por ejemplo.
+
+
+
