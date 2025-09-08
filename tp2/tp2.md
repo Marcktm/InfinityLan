@@ -108,17 +108,24 @@ Por eso es que aunque no tengan blindaje metálico, los UTP pueden funcionar muy
   - Los pares de transmisión y recepción se invierten en un extremo.
   - Se usa para conectar dos dispositivos iguales entre sí, como dos switches por ejemplo.
 
-### c)
+### c) 
+`Conectado a internet, averiguar la puerta de enlace predeterminada de tu conexión (podés utilizar
+ipconfig en la línea de comandos en Windows, ifconfig en Linux, o acceder a las opciones de
+conexión de tu dispositivo). Luego, en wireshark, filtrar los paquetes de esa dirección IP (Ayuda:
+podés utilizar el filtro ip.addr == <dirección>). Ejecutar una función ping en la línea de
+comandos hacia la puerta de enlace, monitorear Wireshark y extraer alguno de los paquetes
+recibidos. Extraer y documentar en el informe los datos de este paquete, en formato hexadecimal.`
+
 inicializar wireshark en la interfaz activa WI-FI
 
-# comando cmd : ipconfig
+### comando cmd : ipconfig
 
 ![punto3](../tp2/img/ipconfig.png)
 
-# copiar la direccion ip
+ `copiar la direccion ip`
 ---
 
-# filtrado por la direccion ip:
+### filtrado por la direccion ip:
 
 ip.addr == 192.168.1.61
 
@@ -127,29 +134,29 @@ ip.addr == 192.168.1.61
 
 
 
-# haciendo ping hacia una red externa para ver trafico a google
+### haciendo ping hacia una red externa para ver trafico a google
 
 ![punto3](../tp2/img/pinggoogle.png)
 
-# ping localmente 
+### ping localmente 
 
 ![punto3](../tp2/img/pinglocal.png)
 
-# filtrado para ver ping al router local mediante comando icmp
+### filtrado para ver ping al router local mediante comando icmp
 
 ![punto3](../tp2/img/visualizacionyfiltradodepingalrouter.png)
 
-# visualizacion de un paquete 
+### visualizacion de un paquete 
 
 ## hexa:
 
 ![punto3](../tp2/img/hexa.png)
 
-# datos del paquete:
+### datos del paquete:
 
 ![punto3](../tp2/img/datosdepaquete.png)
 
-# analisis de datos paquete :
+### analisis de datos paquete :
 
 ![punto3](../tp2/img/analisispaquete.png)
 
@@ -220,5 +227,27 @@ Utilizando otra vez la página [macaddress.io](https://macaddress.io/) para la d
 - Company name: Micro-Star Int'L Co, Ltd
 - Company address: No.69, Lide St., New Taipei City Taiwan 235 TW
 
----
 
+
+## Consigna 4 – Reflexiones finales y conclusiones
+
+**Privacidad y trazabilidad en la red**  
+Cada dispositivo conectado a una red queda identificado por su **dirección MAC**. Esta dirección, única para cada tarjeta de red, permite a los administradores rastrear la actividad de un dispositivo dentro de la red local. Si bien es útil para control y seguridad, también plantea riesgos de privacidad porque deja un rastro permanente de cada conexión.
+
+**IMEI y su relación con la MAC**  
+El **IMEI (International Mobile Equipment Identity)** es un número único que identifica a los teléfonos móviles en las redes celulares.  
+La similitud con la MAC es que ambos son identificadores únicos de hardware:  
+- La **MAC** identifica al dispositivo en una **red local** (Wi-Fi o Ethernet).  
+- El **IMEI** identifica al terminal en la **red celular** (2G/3G/4G/5G).  
+
+En ambos casos, estos códigos pueden usarse para bloquear, localizar o rastrear equipos, lo que tiene implicaciones tanto de seguridad como de privacidad.
+
+**VPN y dirección MAC**  
+Una **VPN (Virtual Private Network)** enmascara la **dirección IP pública** y cifra el tráfico, evitando que los sitios web vean la IP real del usuario.  
+Sin embargo, **la VPN no oculta la dirección MAC**:  
+- La MAC solo se transmite hasta el primer salto (el router o switch local).  
+- El ISP o el administrador de la red Wi-Fi pueden verla.  
+- Los servidores externos en internet (a los que se accede a través de la VPN) nunca reciben la MAC, por lo tanto, no la conocen.
+
+**Conclusión general**  
+El trabajo permitió comprender cómo, incluso en redes aparentemente seguras, los dispositivos dejan identificadores únicos (MAC o IMEI) que hacen posible su trazabilidad. Las herramientas como Wireshark muestran con claridad la exposición de esta información. Aunque las VPN protegen la IP y el contenido de la comunicación, no eliminan totalmente las huellas locales como la dirección MAC.
