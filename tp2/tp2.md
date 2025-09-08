@@ -108,17 +108,24 @@ Por eso es que aunque no tengan blindaje metálico, los UTP pueden funcionar muy
   - Los pares de transmisión y recepción se invierten en un extremo.
   - Se usa para conectar dos dispositivos iguales entre sí, como dos switches por ejemplo.
 
-### c)
+### c) 
+`Conectado a internet, averiguar la puerta de enlace predeterminada de tu conexión (podés utilizar
+ipconfig en la línea de comandos en Windows, ifconfig en Linux, o acceder a las opciones de
+conexión de tu dispositivo). Luego, en wireshark, filtrar los paquetes de esa dirección IP (Ayuda:
+podés utilizar el filtro ip.addr == <dirección>). Ejecutar una función ping en la línea de
+comandos hacia la puerta de enlace, monitorear Wireshark y extraer alguno de los paquetes
+recibidos. Extraer y documentar en el informe los datos de este paquete, en formato hexadecimal.`
+
 inicializar wireshark en la interfaz activa WI-FI
 
-# comando cmd : ipconfig
+### comando cmd : ipconfig
 
 ![punto3](../tp2/img/ipconfig.png)
 
-# copiar la direccion ip
+ `copiar la direccion ip`
 ---
 
-# filtrado por la direccion ip:
+### filtrado por la direccion ip:
 
 ip.addr == 192.168.1.61
 
@@ -127,29 +134,29 @@ ip.addr == 192.168.1.61
 
 
 
-# haciendo ping hacia una red externa para ver trafico a google
+### haciendo ping hacia una red externa para ver trafico a google
 
 ![punto3](../tp2/img/pinggoogle.png)
 
-# ping localmente 
+### ping localmente 
 
 ![punto3](../tp2/img/pinglocal.png)
 
-# filtrado para ver ping al router local mediante comando icmp
+### filtrado para ver ping al router local mediante comando icmp
 
 ![punto3](../tp2/img/visualizacionyfiltradodepingalrouter.png)
 
-# visualizacion de un paquete 
+### visualizacion de un paquete 
 
 ## hexa:
 
 ![punto3](../tp2/img/hexa.png)
 
-# datos del paquete:
+### datos del paquete:
 
 ![punto3](../tp2/img/datosdepaquete.png)
 
-# analisis de datos paquete :
+### analisis de datos paquete :
 
 ![punto3](../tp2/img/analisispaquete.png)
 
