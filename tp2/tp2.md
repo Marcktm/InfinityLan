@@ -64,6 +64,62 @@ Por eso es que aunque no tengan blindaje metálico, los UTP pueden funcionar muy
 - Cable cruzado:
   - Los pares de transmisión y recepción se invierten en un extremo.
   - Se usa para conectar dos dispositivos iguales entre sí, como dos switches por ejemplo.
+---
+
+
+
+
+
+
+
+
+
+---
+## d) Extraer de la información del punto anterior la dirección MAC del dispositivo. Documentar la misma e investigar datos del fabricante en internet. Documentar el nombre y dirección de la empresa.
+El encabezado que se muestra es `70 c9 12 3f ee 40 c8 33 e5 79 44 4f 08 00`, donde se identifican los siguientes componentes:
+- Dirección MAC de destino: `70 c9 12 3f ee 40`
+- Dirección MAC de origen: `c8 33 e5 79 44 4f`
+- Luego de esto arranca el paquete IPv4 (`08 00`)
+
+Ingresando la dirección MAC de destino en la página [macaddress.io](https://macaddress.io/) encontramos la siguiente información:
+- OUI (Organizationally Unique Identifier): C8:33:E5
+- Company name: Huawei Tech Co, Ltd
+- Company address: No.2 Xin Cheng Road, Room R6,Songshan Lake Technology Park Dongguan 523808 CN
+
+## e) Repetir los ejercicios c) y d), pero comunicándote con la computadora de un campañeto/a.
+Para realizar este inciso utilizaremos dos computadoras en la misma red.
+
+**PC principal**:
+![Windows](./img/PC-windows.png)
+- Dirección IPv4: 192.168.0.255
+- Máscara de subred: 255.255.255.0
+- La *puerta de enlace predeterminada es*: `192.168.0.1`
+
+**PC secundara**:
+![Linux](./img/PC-Linux.jpg)
+- Interfaz activa: wlp0s20f3 (Wi-Fi)
+- Dirección IPv4: 192.168.0.169
+- Máscara (por el /24): 255.255.255.0
+- Dirección de broadcast: 192.168.0.255
+
+Desde la PC principal hacemos ping 192.168.0.169 (la IP de la PC secundaria).
+Desde la PC secundaria hacemos ping 192.168.0.225 (la IP de la PC principal).
+Y en Wireshark vemos:
+
+![Wireshars](./img/wireshark-bothPC.png)
+
+- Source: `66:7a:72:21:a9:89` → MAC de la máquina que envía el paquete.
+- Destination: `2c:f0:5d:8a:fc:1a` → MAC de la máquina que recibe el paquete.
+
+**Identificación de los fabricantes**
+Utilizando otra vez la página [macaddress.io](https://macaddress.io/) para la dirección de destino:
+- OUI (Organizationally Unique Identifier): 2C:F0:5D
+- Company name: Micro-Star Int'L Co, Ltd
+- Company address: No.69, Lide St., New Taipei City Taiwan 235 TW
+
+
+
+
 
 
 
