@@ -55,5 +55,31 @@ La versión del protocolo Wi-Fi (802.11) está muy ligada a la seguridad de la r
 | Sistema de Seguridad |WPA2             |WPA3             |WPA3 (y mejoras futuras)|
 
 
+# 3. Protocolos de comunicación inalámbrica
+## a) Lista de algunos de los protocolos más comunes
+| Protocolo | ¿Está estandarizado? Si/No | Si aplica: ¿Cuál(es) estándares? (si tiene varios mencionar la última versión) |
+|-----------|-----------------------------|--------------------------------------------------------------------------------|
+| Wi-Fi     |             Si           |IEEE 802.11        |
+| Bluetooth |             Si           |IEEE 802.15.3      |
+| ZigBee    |             Si           |IEEE 802.15.4      |
+| NFC       |             Si           |ISO/IEC 18092      |
+| LTE       |             Si           |3GPP Release 17    |
+| GSM       |             Si           |3GPP TS 02.xx       |
+| 5G (3GPP) |             Si           |3GPP Release 17 y 18 |
+| LoRa      |             No           |                     |
+| NB-IoT    |             Si           |3GPP Release 13 (mejoras en Release 17)|
+| SigFox    |             No                |                                                                                |
+| Z-Wave    |             Si                |  ITU-T G.9959 (desde 2019, antes propietario)  |
 
+## b) Relación de algunos protocolos entre el alcance y su data rate
+![grafico-distancia-data-rate](../img/distancia-datarate.png)
+
+## c) Características de distintos medios de transmición
+| Característica                | UTP | Fibra Óptica | Wi-Fi 802.11be | Bluetooth 5.4 | 5G |
+|-------------------------------|-----|--------------|----------------|----------------|----|
+| Ancho de banda                |100 [Mbps] - 10 [Gbps]|10 [Gbps] - 100 [Gbps]|Hasta 40 [Gbps]|2 [Mbps]|Hasta 10 [Gbps]|
+| Distancias                    |~ 100 [m]|~ 80 [km]|~ 100 [m]|~ 50 [m]|~ 1 [km]|
+| Inmunidad a EMI / RFI         |Baja|Alta|Baja|Media|Media|
+| Costos de medios/conectores/dispositivos |Bajo|Medio|Medio|Bajo|Alto|
+| ¿Disponible en Packet Tracer? |Si|No|Si|No|No|
 
