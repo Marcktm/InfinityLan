@@ -21,7 +21,16 @@ El estándar original salió en 1997 y permitía velocidades de 1 a 2 Mbps. Desd
 Esta estandarización permitió la movilidad en entornos que antes dependían de cables, y abrió la puerta a tecnologías como IoT, smart homes y oficinas totalmente inalámbricas.
 
 ## b) Conexión a una red abierta de la facultad
-
+Para realizar este punto nos conectamos a la red FCEFyN de la facultad desde una computadora con Linux. 
+1. Para analizar el protocolo de la red primero ejecutamos el comando `ip link show` para conocer el nombre de la interfaz de red.
+2. Una vez identificado el nombre la interfaz Wi-Fi (en este caso `wlp0s20f3`) ejecutamos el comando `iw dev wlp0s20f3` que nos muestra lo siguiente:
+![analisis-de-red-publica](img/analisis-redjpg.jpg)
+De lo cual podemos identificar:
+- 5805 MHz (5.8 GHz). Se encuentra en la banda de 5 GHz.
+- VHT (Very High Througput). **Esto corresponde a Wi-Fi 5, es decir, IEEE 802.11ac**.
+  - Wi-Fi 4 (802.11n) usaba HT (High Throughput).
+  - Wi-Fi 5 usa VHT.
+  - Wi-Fi 6 usaría HE (High Efficiency).
 
 ## c) Red Wi-Fi y dispositivo con diferentes protocolos
 Si una red Wi-Fi opera con un determinado protocolo y una notebook vieja utiliza una NIC (tarjeta de red inalámbrica) que no soporta dicho protocolo entonces no va a poder conectarse a la red Wi-Fi.
@@ -43,6 +52,10 @@ La versión del protocolo Wi-Fi (802.11) está muy ligada a la seguridad de la r
   - Mejora la protección contra ataques de diccionario (offline dictionary attack) y ofrece un cifrado más fuerte. Introducido con Wi-Fi 6, pero compatible con versiones anteriores.
   - Protocolos compatibles: 802.11n, 802.11ac, 802.11ax.
 
+En el caso de la red FCEFyN al no contar con contraseña no utiliza ningún sistema de seguridad. Lo podemos observar en la siguiente imagen:
+![seguridad-red-libre-facultad](img/seguridad-red-libre.jpg)
+
+Pero en el caso hipotético que se le configure una clave, el Wi-Fi 5 (estándar 801.11ac) usaría WPA2 como protocolo de seguridad. Comparado con su predecedor (WPA), WPA2 ofrece una seguridad más robusta gracias al uso del cifrado AES (Advanced Encryption Standard) de 128 bits, que proporciona una mayor resistencia frente ataques de fuerza bruta y otros tipos de vulnerabilidades criptográficas conocoidas. Por el contrario, WPA utiliza TKIP (Temporal Key Integrity Protocol), un protocolo de cifrado que fue diseñado como una solución temporal para mejorar la seguridad de WEP, pero presenta vulnerabilidades como la susceptibilidad a ataques de reinyección de paquetes y limitaciones en la longitud de las clases, lo que lo hace menos resistente frente a ataques avanzados.
 
 ## e) Investigación de los protocolos más recientes
 |        | Wi-Fi 5         | Wi-Fi 6         | Wi-Fi 7         |
@@ -106,7 +119,7 @@ El número de modos (definido por las condiciones de Snell y el diseño físico)
 | Z-Wave    |             Si                |  ITU-T G.9959 (desde 2019, antes propietario)  |
 
 ## b) Relación de algunos protocolos entre el alcance y su data rate
-![grafico-distancia-data-rate](../img/distancia-datarate.png)
+![grafico-distancia-data-rate](img/distancia-datarate.png)
 
 ## c) Características de distintos medios de transmición
 | Característica                | UTP | Fibra Óptica | Wi-Fi 802.11be | Bluetooth 5.4 | 5G |
