@@ -129,3 +129,30 @@ La etiqueta 802.1Q Tag ocupa 4 bytes adicionales insertados justo después de la
 |    PCP (Priority Code Point)     | 3 bits   | Prioridad (para QoS, útil por ejemplo en voz). | 
 |     DEI (Drop Eligible Indicator)     | 1 bit   | Indica si el frame puede descartarse en congestión. | 
 |     VID (VLAN Identifier)     | 12 bits   | Identificador de VLAN (de 1 a 4094). | 
+
+# 2. Implementación de topología en Packet Tracer
+
+En base a la consigna, realizamos la siguiente implementación en Packet Tracer e inicialmente solo configuramos el ruteo
+de las PCs en base a la tabla de ruteo provista:
+
+![topologia-inicial](img/topologia-inicial.png)
+
+Configuración de PCs:
+
+![ConfIP-PCA](img/ruteoPCA.png)
+![ConfIP-PCB](img/ruteoPCB.png)
+
+## a) Configuración de los switch (cambiar sus nombres)
+![conf-nombre-sw1](img/cong-nombre-sw1.png)
+![conf-nombre-sw2](img/conf-nombre-sw2.png)
+
+## b) Asignar contraseñas privilegiadas, de consola y vty
+![contra-sw1](img/contraseñas-sw1.png)
+![contra-sw2](img/constraseñal-sw2.png)
+
+## c) Encriptado de las contraseñas
+![enciptado-contraseñas-switches](img/encriptado.png)
+
+## d) Configuración IP en VLAN 1 según datos de la tabla
+![confIP-VLAN](img/congIP-VLAN.png)
+
