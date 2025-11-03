@@ -271,14 +271,14 @@ Esto confirma que la comunicación entre las dos computadoras de la VLAN Laborat
 ## ESQUEMA TOPOLOGICO:
 
 
-![ESQUEMATOPOLOGICO](img/topo.jpeg)
+![](img/topo.png)
 
 
 
 ## ESQUEMA FISICO:
 
 
-![ESQUEMATOPOLOGICO](img/fisico.jpeg)
+![](img/fisico.png)
 
 
 
@@ -288,7 +288,7 @@ Esto confirma que la comunicación entre las dos computadoras de la VLAN Laborat
 ## FONDO :
 
 
-![ESQUEMATOPOLOGICO](img/background.jpeg)
+![](img/background.png)
 
 
 ## CONFIGURACION DE ROUTER AIRCRAF 
@@ -429,18 +429,18 @@ interface fa0/8
 end
  ```
  En vlan nos debe aparecer las clases diferenciadas. 10 para turista, 20 para business y 30 para admin:
- ![ESQUEMATOPOLOGICO](img/vlan.PNG)
+ ![](img/vlan.png)
 
  ## CONFIGURACION DE SERVIDOR "ENTRETENIMIENTO":
  Configuramos como estatico la direccion ip4 mascara gateway y dns 
-![ESQUEMATOPOLOGICO](img/SERVER.PNG)
+![](img/SERVER.png)
 
 Habilitar HTTP Y EN DNS cambiamos las url:
-![ESQUEMATOPOLOGICO](img/url.PNG)
+![](img/url.png)
 
 en index.html crear pagina. Por defecto viene la de packet tracer
 
-![ESQUEMATOPOLOGICO](img/index.jpeg)
+![](img/index.png)
 
  ```
 <!doctype html>
@@ -532,28 +532,28 @@ en index.html crear pagina. Por defecto viene la de packet tracer
 
 
  ## CONFIGURACION DE LAPTOPS TURISTA, BUSINESS Y ADMIN
-![ESQUEMATOPOLOGICO](img/LAPTOPS.PNG)
+![](img/LAPTOPS.png)
 
 
  ## COMPROBACION DE PING TURISTA
-![ESQUEMATOPOLOGICO](img/PINGT.JPEG)
+![](img/PINGT.png)
 
  ## COMPROBACION DE PING BUSINESS
-![ESQUEMATOPOLOGICO](img/PINGB.JPEG)
+![](img/PINGB.png)
 
 
  ## COMPROBACION DE PING ADMIN
-![ESQUEMATOPOLOGICO](img/PINGADMIN.JPEG)
+![](img/PINGADMIN.png)
 
 
 
  ## SIMULACION
-![ESQUEMATOPOLOGICO](img/SIMULACION.JPEG)
+![](img/SIMULACION.png)
 
 
 
  ## ACCESO A WEB DE LAS CLASES
-![ESQUEMATOPOLOGICO](img/WEBCLASES.JPEG)
+![](img/WEBCLASES.png)
 
 ## CONCLUSION
 
