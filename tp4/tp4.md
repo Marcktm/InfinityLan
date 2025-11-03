@@ -271,7 +271,7 @@ Esto confirma que la comunicación entre las dos computadoras de la VLAN Laborat
 ## ESQUEMA TOPOLOGICO:
 
 
-![](img/topo.png)
+![](img/TOPO.png)
 
 
 
