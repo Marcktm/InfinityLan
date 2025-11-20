@@ -7,6 +7,8 @@ Implementa:
 
 5a) Sensores generan datos aleatorios cada 500ms y publican en sus tópicos
 5b) Cliente "central" (gateway) se suscribe y recopila datos en archivos locales
+5c) Mediante broadvasting enviar al menos dos mensajes de comando a los clientes: comenzar la simulación de datos y apagarse
+5d) Capturar un paquete usando un sniffer y realizar un análisis simple
 """
 import threading
 import time
@@ -30,6 +32,23 @@ class BrokerLocal:
     
     def publish(self, topico, mensaje):
         with self.lock:
+            # --- SIMULACIÓN DE CAPTURA DE PAQUETE MQTT (consiga e) ---
+            paquete_simulado = {
+                "Tipo": "PUBLISH",
+                "Topic": topico,
+                "Payload": mensaje,
+                "QoS": 0,
+                "Retain": False,
+                "Longitud_payload": len(mensaje)
+            }
+            # Cada vez que un sensor publique un dato o el gateway envíe un comando, se imprimirá...
+            print(f"\n📦 [CAPTURA SIMULADA MQTT]")
+            print(f"   ├─ Tipo: {paquete_simulado['Tipo']}")
+            print(f"   ├─ Tópico: {paquete_simulado['Topic']}")
+            print(f"   ├─ Payload: {paquete_simulado['Payload']}")
+            print(f"   ├─ QoS: {paquete_simulado['QoS']}")
+            print(f"   └─ Longitud: {paquete_simulado['Longitud_payload']} bytes\n")
+            # ----------------------------------------------
             # Entregar a suscriptores exactos
             if topico in self.suscriptores:
                 for callback in self.suscriptores[topico]:
@@ -77,6 +96,8 @@ class Sensor(threading.Thread):
         self.activo = True
         self.daemon = True
         self.lecturas_enviadas = 0
+        broker.subscribe("lan/comandos", self.on_comando)
+
     
     def generar_lectura(self):
         """Genera una lectura aleatoria"""
@@ -86,21 +107,31 @@ class Sensor(threading.Thread):
     def run(self):
         print(f"🌡️  {self.nombre} iniciado → Publicando en: {self.topico}")
         
-        while self.activo:
-            lectura = self.generar_lectura()
-            timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S.%f")[:-3]
+        while True:
+            if self.activo:
+                lectura = self.generar_lectura()
+                timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S.%f")[:-3]
             
-            mensaje = f"{lectura}{self.unidad}"
-            
-            print(f"[{timestamp}] 📊 {self.nombre}: {mensaje}")
-            broker.publish(self.topico, mensaje)
-            
-            self.lecturas_enviadas += 1
+                mensaje = f"{lectura}{self.unidad}"
+                broker.publish(self.topico, mensaje)
+                self.lecturas_enviadas += 1    
+                print(f"[{timestamp}] 📊 {self.nombre}: {mensaje}")
             time.sleep(0.5)  # 500ms
     
     def detener(self):
         self.activo = False
-
+    
+    # Función que maneja los mensajes de comandos (punto d)
+    def on_comando(self, topico, mensaje):
+        if mensaje.lower() == "start":
+            if not self.activo:
+                print(f"▶️  {self.nombre} recibió START → activando")
+                self.activo = True
+        elif mensaje.lower() == "stop":
+            if self.activo:
+                print(f"⏹️  {self.nombre} recibió STOP → deteniendo")
+                self.activo = False
+                
 
 class GatewayCentral:
     """Cliente Central que recopila y almacena datos de sensores"""
@@ -194,6 +225,11 @@ class GatewayCentral:
         
         print("="*70 + "\n")
 
+    ## Función para enviar los comandos (consigna d)
+    def enviar_comandos(self, comando):
+        print(f"\n📢 Enviando comando BROADCAST: '{comando}'\n")
+        broker.publish("lan/comandos", comando)
+
 
 def main():
     print("\n" + "█"*70)
@@ -250,6 +286,8 @@ def main():
     print("📡 TRANSMISIÓN DE DATOS EN TIEMPO REAL")
     print("="*70 + "\n")
     
+    gateway.enviar_comandos("start") 
+    
     # Dejar correr por 10 segundos (20 lecturas por sensor)
     try:
         time.sleep(10)
@@ -257,10 +295,13 @@ def main():
         print("\n⚠️  Deteniendo sensores...\n")
     
     # Detener sensores
-    for sensor in sensores:
-        sensor.detener()
+    # for sensor in sensores:
+    #    sensor.detener()
     
-    time.sleep(1)
+     # --- 🔴 Fin de simulación mediante BROADCAST ---
+    gateway.enviar_comandos("stop")
+    print("\n⏹️  Simulación detenida\n")
+    time.sleep(1) # Damos tiempo para que todos los hilos terminen de procesar
     
     # Guardar datos y mostrar resumen
     gateway.guardar_datos()
@@ -273,10 +314,15 @@ def main():
         print(f"  • {sensor.nombre}: {sensor.lecturas_enviadas} lecturas enviadas")
     print("="*70 + "\n")
     
-    print("✅ PUNTO 5a COMPLETADO\n")
-    print("💡 Los datos fueron guardados en archivos CSV para análisis posterior")
-    print("   Puedes abrirlos con Excel o cualquier editor de texto\n")
+    ## 5. a)
+    #print("✅ PUNTO 5a COMPLETADO\n")
+    #print("💡 Los datos fueron guardados en archivos CSV para análisis posterior")
+    #print("   Puedes abrirlos con Excel o cualquier editor de texto\n")
 
+    ## 5. d)
+    print("✅ PUNTO 5d COMPLETADO\n")
+    print("💡 Los sensores fueron controlados mediante comandos broadcast (start/stop)")
+    print("   y los datos se guardaron en archivos CSV para análisis posterior\n")
 
 if __name__ == "__main__":
     main()
