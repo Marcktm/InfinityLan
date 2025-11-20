@@ -108,10 +108,50 @@ python punto4b_broadcasting.py
 ![](img/5b3.png)
 --
 # 5.
+Para realizar esta consignas (y las anidadas) se desarrolló un programa en Python que se puede encontrar en este repositorio bajo el nombre de:
+
  ```
 python punto5_sensores_jerarquia.py   
  ```
  ---
+
+El objetivo es simular una red local con varios clientes (sensores) comunicándose mediante el protocolo **MQTT**, organizados en
+una jerarquía de tópicos que represente distintas salas y tipos de sensores.
+
+Cada sensor se comporta como un cliente publicador, enviando sus datos a un broker local simulado, mientras que una gateway central actúa como suscriptor y recolector de datos.
+Posteriormente, se incorporó la funcionalidad de broadcast de comandos, para iniciar y detener remotamente los sensores, y una captura simbólica de los paquetes MQTT para su análisis.
+
+### a) Simulación de sensores con generación de datos aleatorios
+Se crearon tres instancias de la clase `Sensor`, cada una asociada a un tópico diferente dentro de la jerarquía:
+
+```
+lan/sala1/sensor/temp
+lan/sala1/sensor/hum
+lan/sala2/sensor/temp
+```
+Cada sensor ejecuta un hilo independiente (`threading.Thread`) que, cada 500 ms, genera una lectura aleatoria mediante `random.uniform(min_val, max_val)`.
+
+Ejemplo de configuración:
+```
+sensor1 = Sensor(
+    nombre="Sensor Temp Sala 1",
+    topico="lan/sala1/sensor/temp",
+    tipo="temperatura",
+    min_val=18.0,
+    max_val=28.0,
+    unidad="°C"
+)
+```
+
+Cada lectura se envía al broker mediante:
+```
+broker.publish(self.topico, mensaje)
+```
+
+El broker simulado (`BrokerLocal`) se encarga de distribuir el mensaje a todos los clientes suscritos.
+
+Resultado de ejecución:
+
 ![](img/c1.png)
 ![](img/c2.png)
 ![](img/c3.png)
@@ -119,14 +159,107 @@ python punto5_sensores_jerarquia.py
 ![](img/c5.png)
 
 
-### Monitoreo de datos:
-![](img/docker.png)
----
-![](img/grafanainifinity.png)
----
-![](img/concetardatasourceinfinity.png)
 ---
 
+### b) Gateway Central – Recolección y almacenamiento de datos
+
+Ahora nuestro cliente “central” (gateway) se suscribirá y recopilará los datos generados por los sensores en archivos locales (texto, CSV, serializado o base de datos).
+
+La clase `GatewayCental` representa al cliente central del sistema. Al conectarse, se suscribe al tópico `"lan/#"` utilizando:
+```
+broker.subscribe("lan/#", self.on_mensaje)
+```
+
+Cada mensaje recibido se almacena en un diccionario `defaultdict(list)` con la siguiente estructura:
+```
+self.datos[topico].append({
+    'timestamp': timestamp,
+    'valor': mensaje
+})
+```
+
+Al finalizar la simulación, los datos se exportan a archivos CSV mediante el método `guardar_datos()`:
+```
+with open(ruta_completa, 'w', newline='', encoding='utf-8') as f:
+    writer = csv.writer(f)
+    writer.writerow(['Timestamp', 'Valor'])
+    ...
+```
+
+Cada tópico genera su propio archivo, por ejemplo:
+
+```
+datos_sensores/lan_sala1_sensor_temp.csv
+datos_sensores/lan_sala2_sensor_temp.csv
+```
+
+Al concluir la ejecución, se muestran estadísticas con el número de lecturas y los valores mínimo, máximo y promedio por sensor.
+Los archivos CSV generados pueden abrirse en Excel o cualquier editor de texto.
+
+### d) Broadcast de comandos (start / stop)
+
+Mediante broadcasting deberemos poder enviar al menos dos mensajes de comando a los clientes (ahora sensores): comenzar la simulación de datos y apagarse.
+
+Se agregó un tópico especial de control llamado `"lan/comandos"`, al cual se suscriben todos los sensores:
+
+```
+broker.subscribe("lan/comandos", self.on_comando)
+```
+
+Cada sensor implementa el método `on_comando()` que interpreta los mensajes `"start"` y `"stop"`:
+```
+def on_comando(self, topico, mensaje):
+    if mensaje.lower() == "start":
+        self.activo = True
+    elif mensaje.lower() == "stop":
+        self.activo = False
+```
+
+El Gateway Cental puede enviar estos comandos a todos los sensores mediante:
+```
+def enviar_comandos(self, comando):
+    broker.publish("lan/comandos", comando)
+```
+Los sensores comienzan a generar datos al recibir el comando start y detienen sus lecturas con stop, sin necesidad de finalizar el programa.
+
+### e) Captura y análisis de un paquete (sniffer simulado)
+
+Como se trata de un entorno de simulación sin comunicación TCP/IP real, se implementó una captura simbólica dentro del método `publish()` de la clase `BrokerLocal`.
+Cada vez que se publica un mensaje, el broker imprime la estructura básica de un paquete MQTT:
+```
+paquete_simulado = {
+    "Tipo": "PUBLISH",
+    "Topic": topico,
+    "Payload": mensaje,
+    "QoS": 0,
+    "Retain": False,
+    "Longitud_payload": len(mensaje)
+}
+```
+
+Salida de consola:
+```
+📦 [CAPTURA SIMULADA MQTT]
+   ├─ Tipo: PUBLISH
+   ├─ Tópico: lan/sala1/sensor/temp
+   ├─ Payload: 24.3°C
+   ├─ QoS: 0
+   └─ Longitud: 6 bytes
+```
+Un paquete MQTT PUBLISH real contiene las siguientes secciones:
+
+1. Fixed Header:
+- Tipo de mensaje: PUBLISH (0x30)
+- Flags y longitud variable del mensaje.
+
+2. Variable Header:
+- Nombre del tópico (lan/sala1/sensor/temp).
+- Identificador del mensaje (si QoS > 0).
+
+3. Payload:
+- Contiene el dato publicado (por ejemplo "24.3°C").
+
+Aunque en esta simulación no se utiliza una pila TCP/IP real, el formato presentado reproduce fielmente la estructura lógica de un paquete MQTT que circularía por la red.
 
 
 ## Preguntas
